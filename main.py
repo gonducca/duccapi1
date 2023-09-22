@@ -3,12 +3,14 @@ import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
 from fastapi import FastAPI 
-
+from sklearn.metrics.pairwise import cosine_similarity
  
 dfgenre2=pd.read_parquet('genre.parquet')
 archivo="user_reviews.parquet"
 user_reviews= pd.read_parquet(archivo)
 ufg= pd.read_parquet('userforgenre.parquet')
+df_modelo=pd.read_parquet(r'df_modelo.parquet')
+similitudes = cosine_similarity(df_modelo.iloc[:,3:])
 
 app=FastAPI()
 
@@ -62,4 +64,22 @@ async def userforgenre(genero):
  return  {'El TOP 5 de usuarios para el género' : genero, 
              'es el siguiente' : top5}
 
-
+@app.get("/recommend_games/{id}")
+def recommend_games_by_id(id):
+    
+    # Obtiene las puntuaciones de similitud del juego con todos los demás
+    game_similarities = similitudes[id]
+    
+    # Enumera los juegos y sus similitudes correspondientes
+    similar_games = list(enumerate(game_similarities))
+    
+    # Ordena la lista de juegos similares en función de las similitudes
+    similar_games = sorted(similar_games, key=lambda x: x[1], reverse=True)
+    
+    # Selecciona los 10 juegos más similares (puedes cambiar este número según tus preferencias)
+    top_similar_games = similar_games[1:11]  # Excluye el juego en sí mismo
+    
+    # Obtiene los títulos de los juegos recomendados
+    recommended_games = [df_modelo.iloc[game[0]]['title'] for game in top_similar_games]
+    
+    return recommended_games
