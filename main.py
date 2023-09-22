@@ -66,7 +66,7 @@ async def userforgenre(genero):
 
 @app.get("/recommend_games/{id}")
 def recommend_games_by_id(id):
-    
+    id = int(id) 
     # Obtiene las puntuaciones de similitud del juego con todos los demás
     game_similarities = similitudes[id]
     
