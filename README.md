@@ -35,3 +35,4 @@ Para medir la similitud entre los juegos se utilizó la "similitud del coseno".
 
 
 ## Nota final
+Dado que mi computadora se sobrecargo, tuvo que comprar una mas nueva, de manera que tuve muy poco tiempo para resolver este proyecto. Me faltaron desarrollar algunas de las funciones, profundizar EDA y realizar el otro modelo. Intente abarcar los requisitos minimos de evaluación.
