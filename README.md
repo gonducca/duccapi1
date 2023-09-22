@@ -37,7 +37,7 @@ Está en archivo "main"
 Todo esto está en archivo "main"
 
 ### Deploy
-https://gonzaloduccapi1.onrender.com/
+https://gonzaloduccapi1.onrender.com/docs
 
 ### Video
 
