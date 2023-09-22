@@ -79,10 +79,11 @@ def recommend_games_by_id(id):
     # Selecciona los 10 juegos más similares (puedes cambiar este número según tus preferencias)
     top_similar_games = similar_games[1:11]  # Excluye el juego en sí mismo
     
-    # Obtiene los títulos de los juegos recomendados
+    # Obtiene los títulos de los juegos recomendados en un diccionario
+    recommended_games_dict = {}
     for game in top_similar_games:
         index = game[0]  # Obtener el índice del juego similar
         title = df_modelo.iloc[index]['title']  # Obtener el título del juego
         recommended_games_dict[index] = title  # Agregar el título al diccionario con el índice como clave
-
+    
     return recommended_games_dict 
