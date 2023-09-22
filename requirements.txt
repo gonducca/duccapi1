@@ -4,4 +4,4 @@ pyarrow
 fastapi 
 fastparquet
 uvicorn
-sklearn
+scikit-learn
