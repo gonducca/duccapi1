@@ -6,7 +6,7 @@ from fastapi import FastAPI
 
  
 dfgenre2=pd.read_parquet('genre.parquet')
-archivo="df/user_reviews.parquet"
+archivo="user_reviews.parquet"
 user_reviews= pd.read_parquet(archivo)
 ufg= pd.read_parquet('userforgenre.parquet')
 
